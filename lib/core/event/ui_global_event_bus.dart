@@ -17,7 +17,6 @@ class _UIGlobalEventBusState extends State<UIGlobalEventBus> {
   @override
   void initState() {
     super.initState();
-    print('widget.customEvent: ${widget.customEvent}');
     appEventController.stream.listen((event) {
       switch (event) {
         // 네비게이션

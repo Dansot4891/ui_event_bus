@@ -115,7 +115,7 @@ EventHelpers.showSnackBar('message');
 ### Navigate
 ```
 EventHelpers.navigate(
-    builder: const EventEx2(),
+    page: const EventEx2(),
     navigateMethod: NavigationMethod.push,
 );
 ```
