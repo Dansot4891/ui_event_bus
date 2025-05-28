@@ -11,12 +11,12 @@ class EventHelpers {
 
   // 라우트 네비게이션
   static void navigate({
-    required Widget builder,
+    required Widget page,
     dynamic extra,
     NavigationMethod navigateMethod = NavigationMethod.go,
   }) {
     appEventController.add(AppEventState.eventNavigate(
-      builder: builder,
+      page: page,
       extra: extra,
       navigateMethod: navigateMethod,
     ));
@@ -43,7 +43,7 @@ class EventHelpers {
   }
 
   // 다이나믹한 타입 이벤트 처리
-  static void dynamicType() {
-    appEventController.add(const AppEventState.eventDynamic());
+  static void eventCustom() {
+    appEventController.add(const AppEventState.eventCustom());
   }
 }

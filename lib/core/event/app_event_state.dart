@@ -3,7 +3,7 @@ import 'package:ui_event_bus/core/navigate_method/navigate_method.dart';
 
 sealed class AppEventState {
   const factory AppEventState.eventNavigate({
-    required Widget builder,
+    required Widget page,
     required dynamic extra,
     required NavigationMethod navigateMethod,
   }) = EventNavigate;
@@ -17,16 +17,16 @@ sealed class AppEventState {
 
   const factory AppEventState.eventSnackBar(String e) = EventSnackBar;
 
-  const factory AppEventState.eventDynamic() = EventDynamic;
+  const factory AppEventState.eventCustom() = EventCustom;
 }
 
 class EventNavigate implements AppEventState {
-  final Widget builder;
+  final Widget page;
   final dynamic extra;
   final NavigationMethod navigateMethod;
 
   const EventNavigate({
-    required this.builder,
+    required this.page,
     this.extra,
     required this.navigateMethod,
   });
@@ -54,6 +54,6 @@ class EventSnackBar implements AppEventState {
   const EventSnackBar(this.message);
 }
 
-class EventDynamic implements AppEventState {
-  const EventDynamic();
+class EventCustom implements AppEventState {
+  const EventCustom();
 }

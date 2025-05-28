@@ -29,13 +29,13 @@ class _UIGlobalEventBusState extends State<UIGlobalEventBus> {
             case NavigationMethod.push:
               Navigator.of(eventNavigateKey.currentContext!).push(
                 MaterialPageRoute(
-                  builder: (_) => event.builder,
+                  builder: (_) => event.page,
                 ),
               );
             case NavigationMethod.go:
               Navigator.of(eventNavigateKey.currentContext!).pushReplacement(
                 MaterialPageRoute(
-                  builder: (_) => event.builder,
+                  builder: (_) => event.page,
                 ),
               );
           }
@@ -58,7 +58,7 @@ class _UIGlobalEventBusState extends State<UIGlobalEventBus> {
           );
           break;
         // 사용자 커스텀 설정 이벤트
-        case EventDynamic():
+        case EventCustom():
           widget.customEvent != null
               ? widget.customEvent!(eventNavigateKey.currentContext!)
               : () {};

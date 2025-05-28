@@ -41,7 +41,7 @@ class EventEx1 extends StatelessWidget {
             TextButton(
                 onPressed: () {
                   EventHelpers.navigate(
-                    builder: const EventEx2(),
+                    page: const EventEx2(),
                     navigateMethod: NavigationMethod.push,
                   );
                 },
@@ -58,7 +58,7 @@ class EventEx1 extends StatelessWidget {
                 child: const Text('dialog')),
             TextButton(
                 onPressed: () {
-                  EventHelpers.dynamicType();
+                  EventHelpers.eventCustom();
                 },
                 child: const Text('dynamic')),
           ],
