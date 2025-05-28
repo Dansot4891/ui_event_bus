@@ -1,7 +1,7 @@
 name: ui_event_bus
-description: "A new Flutter package project."
-version: 0.0.1
-homepage:
+description: "A Flutter package offering a singleton broadcast event bus for easy global management of SnackBars, navigation, dialogs, and custom callbacks."
+version: 1.0.0
+homepage: https://github.com/Dansot4891/ui_event_bus
 
 environment:
   sdk: ^3.5.4
