@@ -13,7 +13,7 @@ A lightweight Flutter package that lets you dispatch and handle global UI events
 <br>
 <br>
 
-# 📦 Installation
+# 💻 Installation
 
 Add the package to your `pubspec.yaml`:
 
@@ -26,8 +26,9 @@ or
 flutter pub add global_event_bus
 ```
 
-# 🚀 Quick Start
-### 1. Wrap your MaterialApp and set the keys
+# ⚠️⚠️⚠️ Important: Required Setup ⚠️⚠️⚠️
+### Wrap your MaterialApp and set the keys
+#### Example
 ```
 void main() {
   runApp(
@@ -133,3 +134,9 @@ EventHelpers.showDialog(
 ```
 EventHelpers.eventCustom();
 ```
+
+<br>
+
+# 📄 License
+This project is licensed under the MIT License.  
+See the [LICENSE](LICENSE) file for details.
