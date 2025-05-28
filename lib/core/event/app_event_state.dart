@@ -17,7 +17,7 @@ sealed class AppEventState {
 
   const factory AppEventState.eventSnackBar(String e) = EventSnackBar;
 
-  const factory AppEventState.eventDynamic(dynamic dynamicType) = EventDynamic;
+  const factory AppEventState.eventDynamic() = EventDynamic;
 }
 
 class EventNavigate implements AppEventState {
@@ -55,7 +55,5 @@ class EventSnackBar implements AppEventState {
 }
 
 class EventDynamic implements AppEventState {
-  final dynamic dynamicType;
-
-  const EventDynamic(this.dynamicType);
+  const EventDynamic();
 }

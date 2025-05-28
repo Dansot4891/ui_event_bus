@@ -4,37 +4,36 @@ import 'package:ui_event_bus/core/event/app_event_state.dart';
 import 'package:ui_event_bus/core/key/app_event_key_controller.dart';
 import 'package:ui_event_bus/core/navigate_method/navigate_method.dart';
 
-class AppGlobalEventBus extends StatefulWidget {
+class UIGlobalEventBus extends StatefulWidget {
   final MaterialApp materialApp;
-  final dynamic dynamicEvent;
-  const AppGlobalEventBus(this.materialApp, {this.dynamicEvent, super.key});
+  final void Function(BuildContext)? customEvent;
+  const UIGlobalEventBus(this.materialApp, {this.customEvent, super.key});
 
   @override
-  State<AppGlobalEventBus> createState() => _AppGlobalEventBusState();
+  State<UIGlobalEventBus> createState() => _UIGlobalEventBusState();
 }
 
-class _AppGlobalEventBusState extends State<AppGlobalEventBus> {
-  final AppEventKeyController _appEventKey = AppEventKeyController();
+class _UIGlobalEventBusState extends State<UIGlobalEventBus> {
   @override
   void initState() {
     super.initState();
+    print('widget.customEvent: ${widget.customEvent}');
     appEventController.stream.listen((event) {
       switch (event) {
         // 네비게이션
         case EventNavigate():
-          if (_appEventKey.navigateKey.currentContext == null) {
+          if (eventNavigateKey.currentContext == null) {
             return;
           }
           switch (event.navigateMethod) {
             case NavigationMethod.push:
-              Navigator.of(_appEventKey.navigateKey.currentContext!).push(
+              Navigator.of(eventNavigateKey.currentContext!).push(
                 MaterialPageRoute(
                   builder: (_) => event.builder,
                 ),
               );
             case NavigationMethod.go:
-              Navigator.of(_appEventKey.navigateKey.currentContext!)
-                  .pushReplacement(
+              Navigator.of(eventNavigateKey.currentContext!).pushReplacement(
                 MaterialPageRoute(
                   builder: (_) => event.builder,
                 ),
@@ -43,27 +42,28 @@ class _AppGlobalEventBusState extends State<AppGlobalEventBus> {
           break;
         // 다이아로그
         case EventDialog():
-          if (_appEventKey.navigateKey.currentContext == null) {
+          if (eventNavigateKey.currentContext == null) {
             return;
           }
           showDialog(
-            context: _appEventKey.navigateKey.currentContext!,
+            context: eventNavigateKey.currentContext!,
             barrierDismissible: event.barrierDismissible,
             builder: event.builder,
           );
           break;
         // 스낵바
         case EventSnackBar():
-          _appEventKey.scaffoldKey.currentState?.showSnackBar(
+          eventScaffoldKey.currentState?.showSnackBar(
             SnackBar(content: Text(event.message)),
           );
           break;
         // 사용자 커스텀 설정 이벤트
         case EventDynamic():
-          widget.dynamicEvent;
+          widget.customEvent != null
+              ? widget.customEvent!(eventNavigateKey.currentContext!)
+              : () {};
         case EventPop():
-          Navigator.of(_appEventKey.navigateKey.currentContext!)
-              .pop(event.extra);
+          Navigator.of(eventNavigateKey.currentContext!).pop(event.extra);
       }
     });
   }

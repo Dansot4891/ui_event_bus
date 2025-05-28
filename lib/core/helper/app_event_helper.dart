@@ -43,7 +43,7 @@ class EventHelpers {
   }
 
   // 다이나믹한 타입 이벤트 처리
-  static void dynamicType(dynamic any) {
-    appEventController.add(AppEventState.eventDynamic(any));
+  static void dynamicType() {
+    appEventController.add(const AppEventState.eventDynamic());
   }
 }
