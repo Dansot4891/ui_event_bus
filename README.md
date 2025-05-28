@@ -4,9 +4,11 @@ A lightweight Flutter package that lets you dispatch and handle global UI events
 <br>
 
 # 📸 Preview
-<!-- <img width=30% src='https://github.com/user-attachments/assets/37f55327-5f0c-4c4c-a44d-8aa248a414b5'>
-<img width=30% src='https://github.com/Dansot4891/bouncy_background/raw/main/screenshots/example_view_2.gif'>
- -->
+<img width=30% src='https://github.com/Dansot4891/ui_event_bus/raw/main/screenshots/snackbar.gif'>
+
+<img width=30% src='https://github.com/Dansot4891/ui_event_bus/raw/main/screenshots/navigate.gif'>
+
+<img width=30% src='https://github.com/Dansot4891/ui_event_bus/raw/main/screenshots/pop&dialog.gif'>
 
 <br>
 <br>
@@ -21,11 +23,11 @@ dependencies:
 ```
 or
 ```
-flutter pub get global_event_bus
+flutter pub add global_event_bus
 ```
 
 # 🚀 Quick Start
-### 1. Wrap Material app and Set Scaffold & Navigate keys on Material
+### 1. Wrap your MaterialApp and set the keys
 ```
 void main() {
   runApp(
@@ -44,34 +46,6 @@ void main() {
     ),
   );
 }
-```
-<br>
-
-### 2. Dispatch events
-Anywhere in your code, use the helpers to fire global UI events:
-```
-## SnackBar
-EventHelpers.showSnackBar('message');
-
-## Navigate
-EventHelpers.navigate(
-    builder: const EventEx2(),
-    navigateMethod: NavigationMethod.push,
-);
-
-## Pop
-EventHelpers.pop();
-
-## Dialog
-EventHelpers.showDialog(
-    builder: (ctx) => const AlertDialog(
-        title: Text('title'),
-        content: Text('context'),
-    ),
-);
-
-## Custom Event
-EventHelpers.eventCustom();
 ```
 
 <br>
@@ -126,3 +100,36 @@ EventHelpers.eventCustom();
 - **`barrierDismissible`** (`bool`):  
   Whether tapping outside dismisses the dialog. Defaults to `true`.
 
+# Usage
+### SnackBar
+```
+EventHelpers.showSnackBar('message');
+```
+
+### Navigate
+```
+EventHelpers.navigate(
+    builder: const EventEx2(),
+    navigateMethod: NavigationMethod.push,
+);
+```
+
+### Pop
+```
+EventHelpers.pop();
+```
+
+### Dialog
+```
+EventHelpers.showDialog(
+    builder: (ctx) => const AlertDialog(
+        title: Text('title'),
+        content: Text('context'),
+    ),
+);
+```
+
+### Custom Event
+```
+EventHelpers.eventCustom();
+```
