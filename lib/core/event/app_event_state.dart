@@ -4,7 +4,6 @@ import 'package:ui_event_bus/core/navigate_method/navigate_method.dart';
 sealed class AppEventState {
   const factory AppEventState.eventNavigate({
     required Widget page,
-    required dynamic extra,
     required NavigationMethod navigateMethod,
   }) = EventNavigate;
 
@@ -22,12 +21,10 @@ sealed class AppEventState {
 
 class EventNavigate implements AppEventState {
   final Widget page;
-  final dynamic extra;
   final NavigationMethod navigateMethod;
 
   const EventNavigate({
     required this.page,
-    this.extra,
     required this.navigateMethod,
   });
 }

@@ -12,12 +12,10 @@ class EventHelpers {
   // 라우트 네비게이션
   static void navigate({
     required Widget page,
-    dynamic extra,
     NavigationMethod navigateMethod = NavigationMethod.go,
   }) {
     appEventController.add(AppEventState.eventNavigate(
       page: page,
-      extra: extra,
       navigateMethod: navigateMethod,
     ));
   }

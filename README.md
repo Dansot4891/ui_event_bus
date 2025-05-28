@@ -78,11 +78,13 @@ void main() {
 | `showDialog({ required Widget Function(BuildContext) builder, bool barrierDismissible = true })` | `showDialog({ required Widget Function(BuildContext) builder, bool barrierDismissible = true })`              | Dispatches a dialog event                                            |
 | `customEvent()`                                    | `customEvent()`                                                                              | Invokes the user-defined callback registered in `UIGlobalEventBus`   |
 
-#### Parameters
+### Parameters
 
+#### SnackBar Parameter
 - **`message`** (`String`):  
   The text to display in the SnackBar.
 
+#### Navigate Parameter
 - **`page`** (`Widget`):  
   The destination widget to navigate to.
 
@@ -92,9 +94,11 @@ void main() {
   - `go`   – Replace the current route with the `page`
   - Defaults to `go`.
 
+#### Pop Parameter
 - **`extra`** (`dynamic`):  
   Optional value returned when popping the current route.
 
+#### Dialog Parameter
 - **`builder`** (`Widget Function(BuildContext)`):  
   A function that returns the dialog widget.
 
@@ -102,6 +106,7 @@ void main() {
   Whether tapping outside dismisses the dialog. Defaults to `true`.
 
 # Usage
+
 ### SnackBar
 ```
 EventHelpers.showSnackBar('message');
