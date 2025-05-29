@@ -7,7 +7,10 @@ import 'package:ui_event_bus/core/navigate_method/navigate_method.dart';
 class UIGlobalEventBus extends StatefulWidget {
   final MaterialApp materialApp;
   final void Function(BuildContext)? customEvent;
-  const UIGlobalEventBus(this.materialApp, {this.customEvent, super.key});
+  final GlobalKey<ScaffoldMessengerState>? scaffoldKey;
+  final GlobalKey<NavigatorState>? navigateKey;
+  const UIGlobalEventBus(this.materialApp,
+      {this.customEvent, this.scaffoldKey, this.navigateKey, super.key});
 
   @override
   State<UIGlobalEventBus> createState() => _UIGlobalEventBusState();
@@ -17,22 +20,24 @@ class _UIGlobalEventBusState extends State<UIGlobalEventBus> {
   @override
   void initState() {
     super.initState();
+    final scaffoldKey = widget.scaffoldKey ?? eventScaffoldKey;
+    final navigateKey = widget.navigateKey ?? eventNavigateKey;
     appEventController.stream.listen((event) {
       switch (event) {
         // 네비게이션
         case EventNavigate():
-          if (eventNavigateKey.currentContext == null) {
+          if (navigateKey.currentContext == null) {
             return;
           }
           switch (event.navigateMethod) {
             case NavigationMethod.push:
-              Navigator.of(eventNavigateKey.currentContext!).push(
+              Navigator.of(navigateKey.currentContext!).push(
                 MaterialPageRoute(
                   builder: (_) => event.page,
                 ),
               );
             case NavigationMethod.go:
-              Navigator.of(eventNavigateKey.currentContext!).pushReplacement(
+              Navigator.of(navigateKey.currentContext!).pushReplacement(
                 MaterialPageRoute(
                   builder: (_) => event.page,
                 ),
@@ -41,28 +46,28 @@ class _UIGlobalEventBusState extends State<UIGlobalEventBus> {
           break;
         // 다이아로그
         case EventDialog():
-          if (eventNavigateKey.currentContext == null) {
+          if (navigateKey.currentContext == null) {
             return;
           }
           showDialog(
-            context: eventNavigateKey.currentContext!,
+            context: navigateKey.currentContext!,
             barrierDismissible: event.barrierDismissible,
             builder: event.builder,
           );
           break;
         // 스낵바
         case EventSnackBar():
-          eventScaffoldKey.currentState?.showSnackBar(
+          scaffoldKey.currentState?.showSnackBar(
             SnackBar(content: Text(event.message)),
           );
           break;
         // 사용자 커스텀 설정 이벤트
         case EventCustom():
           widget.customEvent != null
-              ? widget.customEvent!(eventNavigateKey.currentContext!)
+              ? widget.customEvent!(navigateKey.currentContext!)
               : () {};
         case EventPop():
-          Navigator.of(eventNavigateKey.currentContext!).pop(event.extra);
+          Navigator.of(navigateKey.currentContext!).pop(event.extra);
       }
     });
   }
