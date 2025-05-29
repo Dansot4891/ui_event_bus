@@ -44,6 +44,10 @@ void main() {
       customEvent: (BuildContext ctx) {
         print('Custom event triggered!');
       },
+
+      // ③ If you have a custom key, set it up
+      navigateKey: yourNavigateKey,
+      scaffoldKey: yourScaffoldKey,
     ),
   );
 }
@@ -58,6 +62,9 @@ void main() {
 
 - **Global Singleton Bus**  
   Behind the scenes it’s just a singleton broadcast stream, so you can fire events from anywhere and handle them in one central place.
+
+- **Custom Key Configuration**  
+  Configure your own `navigatorKey` and `scaffoldMessengerKey` to control global navigation and SnackBar/Dialog handling.
 
 - **Zero Boilerplate Setup**  
   Wrap your `MaterialApp` in `UIGlobalEventBus` (or use `EventBusMaterialApp`), supply the two keys once, and you’re done—no more scattered `navigatorKey` or `scaffoldMessengerKey` hacks.
