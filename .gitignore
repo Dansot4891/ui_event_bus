@@ -27,3 +27,15 @@ migrate_working_dir/
 **/doc/api/
 .dart_tool/
 build/
+
+# 1) Ignore everything under example/
+example/**
+
+# 2) But don’t ignore the example/lib/ folder itself
+!example/lib/
+
+# 3) Re-ignore all files inside lib/
+example/lib/**
+
+# 4) Finally, unignore just main.dart
+!example/lib/main.dart
